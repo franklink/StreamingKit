@@ -151,6 +151,10 @@ typedef void(^STKFrameFilter)(UInt32 channelsPerFrame, UInt32 bytesPerFrame, UIn
 @property (readonly) double duration;
 /// Gets the current item progress in seconds
 @property (readonly) double progress;
+/// Gets or sets the playback rate (default is 1.0)
+@property(readwrite) float rate;
+// Gets or sets the playback overlap (default is 8.0)
+@property(readwrite) float overlap;
 /// Enables or disables peak and average decibel meteting
 @property (readwrite) BOOL meteringEnabled;
 /// Enables or disables the EQ
@@ -177,6 +181,9 @@ typedef void(^STKFrameFilter)(UInt32 channelsPerFrame, UInt32 bytesPerFrame, UIn
 /// URLs with HTTP schemes will return an STKHTTPDataSource wrapped within an STKAutoRecoveringHTTPDataSource.
 /// URLs with unrecognised schemes will return nil.
 +(STKDataSource*) dataSourceFromURL:(NSURL*)url;
+
+/// Returns canonical audio format used by STKFrameFilter blocks.
++(AudioStreamBasicDescription)canonicalAudioStreamBasicDescription;
 
 /// Initializes a new STKAudioPlayer with the default options
 -(instancetype) init;
